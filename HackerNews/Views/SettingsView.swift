@@ -9,10 +9,13 @@ import SwiftUI
 
 struct SettingsView: View {
     var body: some View {
-        Form {
-            Section(header: Text("About")) {
-                Text("Version \(UIApplication.appVersion ?? "0").\(UIApplication.buildVersion ?? "0")")
+        NavigationStack {
+            Form {
+                Section(header: Text("About")) {
+                    Text("Version \(UIApplication.appVersion ?? "0").\(UIApplication.buildVersion ?? "0")")
+                }
             }
+            .navigationTitle("Settings")
         }
     }
 }
