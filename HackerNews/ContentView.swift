@@ -29,7 +29,7 @@ struct ContentView: View {
                             .font(.system(size: 24))
                     }
 
-                Text("Settings")
+                SettingsView()
                     .tabItem {
                         Image(systemName: "gear")
                             .font(.system(size: 24))
