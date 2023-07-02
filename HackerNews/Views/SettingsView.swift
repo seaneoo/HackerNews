@@ -9,7 +9,11 @@ import SwiftUI
 
 struct SettingsView: View {
     var body: some View {
-        Text("Settings")
+        Form {
+            Section(header: Text("About")) {
+                Text("Version \(UIApplication.appVersion ?? "0").\(UIApplication.buildVersion ?? "0")")
+            }
+        }
     }
 }
 
