@@ -35,18 +35,21 @@ struct FeedView: View {
                     Menu {
                         Button {
                             storyType = StoryType.top
+                            hapticFeedback()
                         } label: {
                             Label("Top", systemImage: StoryType.top.image())
                         }
 
                         Button {
                             storyType = StoryType.best
+                            hapticFeedback()
                         } label: {
                             Label("Best", systemImage: StoryType.best.image())
                         }
 
                         Button {
                             storyType = StoryType.new
+                            hapticFeedback()
                         } label: {
                             Label("New", systemImage: StoryType.new.image())
                         }
@@ -56,6 +59,11 @@ struct FeedView: View {
                 }
             }
         }
+    }
+
+    func hapticFeedback() {
+        let impact = UIImpactFeedbackGenerator(style: .medium)
+        impact.impactOccurred()
     }
 }
 
