@@ -10,6 +10,7 @@
 		1494EECE2A52141800030CA3 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1494EECD2A52141800030CA3 /* SettingsView.swift */; };
 		1494EECF2A52141800030CA3 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1494EECD2A52141800030CA3 /* SettingsView.swift */; };
 		149DD9602A5216FC00086F87 /* UIApplicationExts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 149DD95F2A5216FC00086F87 /* UIApplicationExts.swift */; };
+		149DD9622A52218700086F87 /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 149DD9612A52218700086F87 /* SearchView.swift */; };
 		14CF312C2A520924002F8936 /* HackerNewsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14CF312B2A520924002F8936 /* HackerNewsApp.swift */; };
 		14CF312E2A520924002F8936 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14CF312D2A520924002F8936 /* ContentView.swift */; };
 		14CF31302A520925002F8936 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 14CF312F2A520925002F8936 /* Assets.xcassets */; };
@@ -32,6 +33,7 @@
 /* Begin PBXFileReference section */
 		1494EECD2A52141800030CA3 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		149DD95F2A5216FC00086F87 /* UIApplicationExts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIApplicationExts.swift; sourceTree = "<group>"; };
+		149DD9612A52218700086F87 /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
 		14CF31282A520924002F8936 /* HackerNews.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HackerNews.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		14CF312B2A520924002F8936 /* HackerNewsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HackerNewsApp.swift; sourceTree = "<group>"; };
 		14CF312D2A520924002F8936 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -120,6 +122,7 @@
 			children = (
 				14CF314A2A520FDD002F8936 /* FeedView.swift */,
 				1494EECD2A52141800030CA3 /* SettingsView.swift */,
+				149DD9612A52218700086F87 /* SearchView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -228,6 +231,7 @@
 				1494EECE2A52141800030CA3 /* SettingsView.swift in Sources */,
 				14CF314B2A520FDD002F8936 /* FeedView.swift in Sources */,
 				149DD9602A5216FC00086F87 /* UIApplicationExts.swift in Sources */,
+				149DD9622A52218700086F87 /* SearchView.swift in Sources */,
 				14CF312C2A520924002F8936 /* HackerNewsApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
