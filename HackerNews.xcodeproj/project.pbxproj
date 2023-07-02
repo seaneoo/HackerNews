@@ -12,6 +12,8 @@
 		14CF31302A520925002F8936 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 14CF312F2A520925002F8936 /* Assets.xcassets */; };
 		14CF31332A520925002F8936 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 14CF31322A520925002F8936 /* Preview Assets.xcassets */; };
 		14CF31402A520F02002F8936 /* HackerNewsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14CF313F2A520F02002F8936 /* HackerNewsTests.swift */; };
+		14CF314B2A520FDD002F8936 /* FeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14CF314A2A520FDD002F8936 /* FeedView.swift */; };
+		14CF314C2A520FDD002F8936 /* FeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14CF314A2A520FDD002F8936 /* FeedView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -32,6 +34,7 @@
 		14CF31322A520925002F8936 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		14CF313D2A520F02002F8936 /* HackerNewsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HackerNewsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		14CF313F2A520F02002F8936 /* HackerNewsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HackerNewsTests.swift; sourceTree = "<group>"; };
+		14CF314A2A520FDD002F8936 /* FeedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,6 +76,7 @@
 		14CF312A2A520924002F8936 /* HackerNews */ = {
 			isa = PBXGroup;
 			children = (
+				14CF31472A520FC8002F8936 /* Views */,
 				14CF312B2A520924002F8936 /* HackerNewsApp.swift */,
 				14CF312D2A520924002F8936 /* ContentView.swift */,
 				14CF312F2A520925002F8936 /* Assets.xcassets */,
@@ -95,6 +99,14 @@
 				14CF313F2A520F02002F8936 /* HackerNewsTests.swift */,
 			);
 			path = HackerNewsTests;
+			sourceTree = "<group>";
+		};
+		14CF31472A520FC8002F8936 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				14CF314A2A520FDD002F8936 /* FeedView.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -198,6 +210,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				14CF312E2A520924002F8936 /* ContentView.swift in Sources */,
+				14CF314B2A520FDD002F8936 /* FeedView.swift in Sources */,
 				14CF312C2A520924002F8936 /* HackerNewsApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -206,6 +219,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				14CF314C2A520FDD002F8936 /* FeedView.swift in Sources */,
 				14CF31402A520F02002F8936 /* HackerNewsTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

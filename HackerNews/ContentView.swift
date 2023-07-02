@@ -11,7 +11,7 @@ struct ContentView: View {
     var body: some View {
         NavigationStack {
             TabView {
-                Text("Feed")
+                FeedView()
                     .tabItem {
                         Image(systemName: "newspaper")
                             .font(.system(size: 24))
