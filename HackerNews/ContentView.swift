@@ -22,7 +22,7 @@ struct ContentView: View {
                         .font(.system(size: 24))
                 }
 
-            Text("Account")
+            AccountView()
                 .tabItem {
                     Image(systemName: "person")
                         .font(.system(size: 24))

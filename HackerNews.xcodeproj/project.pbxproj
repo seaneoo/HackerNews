@@ -18,6 +18,7 @@
 		14CF31402A520F02002F8936 /* HackerNewsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14CF313F2A520F02002F8936 /* HackerNewsTests.swift */; };
 		14CF314B2A520FDD002F8936 /* FeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14CF314A2A520FDD002F8936 /* FeedView.swift */; };
 		14CF314C2A520FDD002F8936 /* FeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14CF314A2A520FDD002F8936 /* FeedView.swift */; };
+		14D41CA82A522921004CB337 /* AccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14D41CA72A522921004CB337 /* AccountView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,6 +43,7 @@
 		14CF313D2A520F02002F8936 /* HackerNewsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HackerNewsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		14CF313F2A520F02002F8936 /* HackerNewsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HackerNewsTests.swift; sourceTree = "<group>"; };
 		14CF314A2A520FDD002F8936 /* FeedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedView.swift; sourceTree = "<group>"; };
+		14D41CA72A522921004CB337 /* AccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -123,6 +125,7 @@
 				14CF314A2A520FDD002F8936 /* FeedView.swift */,
 				1494EECD2A52141800030CA3 /* SettingsView.swift */,
 				149DD9612A52218700086F87 /* SearchView.swift */,
+				14D41CA72A522921004CB337 /* AccountView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -231,6 +234,7 @@
 				1494EECE2A52141800030CA3 /* SettingsView.swift in Sources */,
 				14CF314B2A520FDD002F8936 /* FeedView.swift in Sources */,
 				149DD9602A5216FC00086F87 /* UIApplicationExts.swift in Sources */,
+				14D41CA82A522921004CB337 /* AccountView.swift in Sources */,
 				149DD9622A52218700086F87 /* SearchView.swift in Sources */,
 				14CF312C2A520924002F8936 /* HackerNewsApp.swift in Sources */,
 			);
