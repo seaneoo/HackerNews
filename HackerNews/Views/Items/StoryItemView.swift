@@ -39,8 +39,9 @@ struct StoryItemView: View {
             }
 
             HStack(spacing: 20) {
-                score
-                comments
+                toolBarActionUpvote
+                toolBarActionShowComments
+                toolBarActionSave
             }
             .padding([.top], 2)
         }
@@ -70,11 +71,10 @@ struct StoryItemView: View {
         }
     }
 
-    private var score: some View {
+    private var toolBarActionUpvote: some View {
         HStack {
             Image(systemName: "arrow.up")
                 .frame(width: 20, height: 20)
-                .foregroundColor(.orange)
             Text(String(item.score ?? 0)).font(.subheadline)
         }
         .onTapGesture {
@@ -83,7 +83,7 @@ struct StoryItemView: View {
         }
     }
 
-    private var comments: some View {
+    private var toolBarActionShowComments: some View {
         HStack {
             Image(systemName: "text.bubble")
                 .frame(width: 20, height: 20)
@@ -92,6 +92,17 @@ struct StoryItemView: View {
         .onTapGesture {
             // on tap, view the comments of the item (i.e., item details)
             print("comments")
+        }
+    }
+
+    private var toolBarActionSave: some View {
+        HStack {
+            Image(systemName: "bookmark")
+                .frame(width: 20, height: 20)
+        }
+        .onTapGesture {
+            // on tap, save the item
+            print("save")
         }
     }
 
