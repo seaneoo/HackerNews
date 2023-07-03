@@ -10,8 +10,6 @@ import SwiftUI
 struct StoryItemView: View {
     var item: Item
 
-    @State private var showCommentsAlert = false
-    @State private var showUpvoteAlert = false
     @Environment(\.openURL) private var openURL
 
     init(item: Item) {
@@ -47,11 +45,13 @@ struct StoryItemView: View {
             .padding([.top], 2)
         }
         .onTapGesture {
+            // on tap, open the item's url in the default browser
             if let url = item.url {
                 openURL(URL(string: url)!)
             }
         }
         .swipeActions(edge: .leading) {
+            // upvote the item when swiping right
             Button {
                 print("upvote")
             } label: {
@@ -60,18 +60,13 @@ struct StoryItemView: View {
             .tint(.orange)
         }
         .swipeActions(edge: .trailing) {
+            // save the item when swiping left
             Button {
                 print("save")
             } label: {
                 Label("Save", systemImage: "bookmark")
             }
             .tint(.green)
-        }
-        .alert("showing comments", isPresented: $showCommentsAlert) {
-            Button("OK", role: .cancel) { }
-        }
-        .alert("upvote", isPresented: $showUpvoteAlert) {
-            Button("OK", role: .cancel) { }
         }
     }
 
@@ -83,7 +78,8 @@ struct StoryItemView: View {
             Text(String(item.score ?? 0)).font(.subheadline)
         }
         .onTapGesture {
-            showUpvoteAlert = true
+            // on tap, upvote the item
+            print("upvote")
         }
     }
 
@@ -94,7 +90,8 @@ struct StoryItemView: View {
             Text(String(item.descendants ?? 0)).font(.subheadline)
         }
         .onTapGesture {
-            showCommentsAlert = true
+            // on tap, view the comments of the item (i.e., item details)
+            print("comments")
         }
     }
 
