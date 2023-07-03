@@ -46,6 +46,24 @@ struct Item: Codable {
         parts = try container.decodeIfPresent([Int].self, forKey: .parts)
         descendants = try container.decodeIfPresent(Int.self, forKey: .descendants)
     }
+
+    init(id: Int, deleted: Bool? = nil, type: String? = nil, by: String? = nil, time: Int? = nil, text: String? = nil, dead: Bool? = nil, parent: Int? = nil, poll: Int? = nil, kids: [Int]? = nil, url: String? = nil, score: Int? = nil, title: String? = nil, parts: [Int]? = nil, descendants: Int? = nil) {
+        self.id = id
+        self.deleted = deleted
+        self.type = type
+        self.by = by
+        self.time = time
+        self.text = text
+        self.dead = dead
+        self.parent = parent
+        self.poll = poll
+        self.kids = kids
+        self.url = url
+        self.score = score
+        self.title = title
+        self.parts = parts
+        self.descendants = descendants
+    }
 }
 
 // https://github.com/HackerNews/API#users
@@ -63,5 +81,13 @@ struct User: Codable {
         karma = try container.decode(Int.self, forKey: .karma)
         about = try container.decodeIfPresent(String.self, forKey: .about)
         submitted = try container.decodeIfPresent([Int].self, forKey: .submitted)
+    }
+
+    init(id: String, created: Int, karma: Int, about: String? = nil, submitted: [Int]? = nil) {
+        self.id = id
+        self.created = created
+        self.karma = karma
+        self.about = about
+        self.submitted = submitted
     }
 }
