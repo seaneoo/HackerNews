@@ -77,18 +77,12 @@ struct FeedView: View {
 
     func getStories() async -> Stories {
         do {
-            let data = try await APIService.shared.fetchData(for: Stories.self, from: "https://hacker-news.firebaseio.com/v0/beststories.json")
+            let data = try await APIService.shared.fetchData(for: Stories.self, from: "https://hacker-news.firebaseio.com/v0/topstories.json")
             return Array(data.prefix(10))
         } catch {
             print(error)
         }
         return []
-    }
-
-    // TODO: move into sep. file
-    func hapticFeedback() {
-        let impact = UIImpactFeedbackGenerator(style: .medium)
-        impact.impactOccurred()
     }
 }
 

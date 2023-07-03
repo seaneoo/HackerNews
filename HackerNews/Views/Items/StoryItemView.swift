@@ -22,10 +22,11 @@ struct StoryItemView: View {
 
     @ViewBuilder
     private var contentView: some View {
-        VStack(alignment: .leading) {
+        VStack(alignment: .leading, spacing: 10) {
             Text("\(item.title ?? "undetermined")")
                 .font(.headline)
-                .padding([.bottom], 2)
+
+//            if let url = item.url { }
 
             if let by = item.by {
                 Button {
@@ -56,25 +57,6 @@ struct StoryItemView: View {
             }
             .tint(.green)
         }
-    }
-
-    // TODO: move into sep. file
-    func extractDomainName(from urlString: String) -> String? {
-        if let url = URL(string: urlString), let host = url.host {
-            return host
-        }
-        return nil
-    }
-
-    // TODO: move into sep. file
-    func formatUnixTime(from time: Int) -> String? {
-        let date = Date(timeIntervalSince1970: TimeInterval(time))
-        let df = DateComponentsFormatter()
-        df.unitsStyle = .full
-        df.maximumUnitCount = 1
-        df.allowedUnits = [.year, .month, .weekOfMonth, .day, .hour, .minute, .second]
-        df.collapsesLargestUnit = true
-        return df.string(from: date, to: Date())
     }
 }
 

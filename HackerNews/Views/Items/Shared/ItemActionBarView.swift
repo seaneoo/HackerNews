@@ -17,8 +17,7 @@ struct ItemActionBarView: View {
         self.item = item
         self.size = size
 
-        // TODO: change the "small" size to be slightly smaller than "body"
-        fontSize = self.size == .large ? .body : .body
+        fontSize = self.size == .large ? .body : .footnote
     }
 
     var body: some View {
@@ -68,7 +67,7 @@ struct ItemActionBarView: View {
         } label: {
             HStack {
                 Image(systemName: "clock")
-                Text(formatUnixTime(from: item.time ?? 0) ?? "nil")
+                Text(getRelativeTimeFromNow(from: convertUnixTime(from: item.time ?? 0)))
             }
             .foregroundColor(.primary)
             .font(self.fontSize)
@@ -94,31 +93,8 @@ struct ItemActionBarView: View {
                 .font(self.fontSize)
         }
     }
-
-    // TODO: move into sep. file
-    func formatUnixTime(from time: Int) -> String? {
-        let date = Date(timeIntervalSince1970: TimeInterval(time))
-        let df = DateComponentsFormatter()
-        df.unitsStyle = .abbreviated
-        df.maximumUnitCount = 1
-        df.allowedUnits = [.year, .month, .weekOfMonth, .day, .hour, .minute, .second]
-        df.collapsesLargestUnit = true
-        return df.string(from: date, to: Date())
-    }
-
-    // TODO: move into sep. file
-    func abbrNumber(from number: Int) -> String {
-        let num = Double(number)
-        if num >= 1000000 {
-            return String(format: "%.1fM", num / 1000000)
-        } else if num >= 1000 {
-            return String(format: "%.1fK", num / 1000)
-        }
-        return String(number)
-    }
 }
 
-// TODO: move into sep. file
 enum ActionBarSize {
     case small, large
 }
