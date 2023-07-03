@@ -29,20 +29,13 @@ struct FeedView: View {
     @ViewBuilder
     var body: some View {
         NavigationStack {
-            ScrollView {
-                if stories.count > 0 {
-                    LazyVStack(alignment: .leading, spacing: 20) {
-                        ForEach(0 ..< stories.count, id: \.self) { index in
-                            ItemView(id: stories[index])
-                            if index != stories.count - 1 {
-                                Divider()
-                            }
-                        }
+            VStack {
+                List {
+                    ForEach(0 ..< stories.count, id: \.self) { index in
+                        ItemView(id: stories[index])
                     }
-                    .padding(20.0)
-                } else {
-                    ProgressView()
                 }
+                .listStyle(.plain)
             }
             .navigationTitle("Stories")
             .toolbar {
@@ -73,29 +66,29 @@ struct FeedView: View {
                     }
                 }
             }
-            .refreshable {
-                stories = await getStories()
-            }
-            .task {
-                stories = await getStories()
-            }
+        }
+        .refreshable {
+            stories = await getStories()
+        }
+        .task {
+            stories = await getStories()
         }
     }
+}
 
-    func getStories() async -> Stories {
-        do {
-            let data = try await APIService.shared.fetchData(for: Stories.self, from: "https://hacker-news.firebaseio.com/v0/topstories.json")
-            return Array(data.prefix(10))
-        } catch {
-            print(error)
-        }
-        return []
+func getStories() async -> Stories {
+    do {
+        let data = try await APIService.shared.fetchData(for: Stories.self, from: "https://hacker-news.firebaseio.com/v0/topstories.json")
+        return Array(data.prefix(10))
+    } catch {
+        print(error)
     }
+    return []
+}
 
-    func hapticFeedback() {
-        let impact = UIImpactFeedbackGenerator(style: .medium)
-        impact.impactOccurred()
-    }
+func hapticFeedback() {
+    let impact = UIImpactFeedbackGenerator(style: .medium)
+    impact.impactOccurred()
 }
 
 struct FeedView_Previews: PreviewProvider {
