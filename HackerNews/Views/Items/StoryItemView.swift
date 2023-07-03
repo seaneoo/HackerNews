@@ -51,6 +51,22 @@ struct StoryItemView: View {
                 openURL(URL(string: url)!)
             }
         }
+        .swipeActions(edge: .leading) {
+            Button {
+                print("upvote")
+            } label: {
+                Label("Upvote", systemImage: "arrow.up")
+            }
+            .tint(.orange)
+        }
+        .swipeActions(edge: .trailing) {
+            Button {
+                print("save")
+            } label: {
+                Label("Save", systemImage: "bookmark")
+            }
+            .tint(.green)
+        }
         .alert("showing comments", isPresented: $showCommentsAlert) {
             Button("OK", role: .cancel) { }
         }
@@ -63,7 +79,7 @@ struct StoryItemView: View {
         HStack {
             Image(systemName: "arrow.up")
                 .frame(width: 20, height: 20)
-                .foregroundColor(.accentColor)
+                .foregroundColor(.orange)
             Text(String(item.score ?? 0)).font(.subheadline)
         }
         .onTapGesture {
