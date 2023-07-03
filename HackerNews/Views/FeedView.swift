@@ -26,18 +26,23 @@ struct FeedView: View {
     @State private var storyType: StoryType = StoryType.top
     @State private var stories: Stories = []
 
+    @ViewBuilder
     var body: some View {
         NavigationStack {
             ScrollView {
-                LazyVStack(alignment: .leading, spacing: 20) {
-                    ForEach(0 ..< stories.count, id: \.self) { index in
-                        StoryView(id: stories[index])
-                        if index != stories.count - 1 {
-                            Divider()
+                if stories.count > 0 {
+                    LazyVStack(alignment: .leading, spacing: 20) {
+                        ForEach(0 ..< stories.count, id: \.self) { index in
+                            ItemView(id: stories[index])
+                            if index != stories.count - 1 {
+                                Divider()
+                            }
                         }
                     }
+                    .padding(20.0)
+                } else {
+                    ProgressView()
                 }
-                .padding(20.0)
             }
             .navigationTitle("Stories")
             .toolbar {
