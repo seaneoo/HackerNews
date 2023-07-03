@@ -24,10 +24,17 @@ enum StoryType {
 
 struct FeedView: View {
     @State private var storyType: StoryType = StoryType.top
+    @State private var stories: Stories = []
 
     var body: some View {
         NavigationStack {
-            VStack {
+            ScrollView {
+                LazyVStack(alignment: .leading, spacing: 20) {
+                    ForEach(0 ..< stories.count, id: \.self) { index in
+                        StoryView(id: stories[index])
+                    }
+                }
+                .padding(20.0)
             }
             .navigationTitle("Stories")
             .toolbar {
@@ -56,6 +63,13 @@ struct FeedView: View {
                     } label: {
                         Image(systemName: storyType.image())
                     }
+                }
+            }.task {
+                do {
+                    stories = try await APIService.shared.fetchData(for: Stories.self, from: "https://hacker-news.firebaseio.com/v0/topstories.json")
+                    stories = Array(stories[0 ... 9])
+                } catch {
+                    print(error)
                 }
             }
         }
