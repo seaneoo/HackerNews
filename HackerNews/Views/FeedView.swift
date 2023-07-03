@@ -32,6 +32,9 @@ struct FeedView: View {
                 LazyVStack(alignment: .leading, spacing: 20) {
                     ForEach(0 ..< stories.count, id: \.self) { index in
                         StoryView(id: stories[index])
+                        if index != stories.count - 1 {
+                            Divider()
+                        }
                     }
                 }
                 .padding(20.0)
@@ -64,15 +67,24 @@ struct FeedView: View {
                         Image(systemName: storyType.image())
                     }
                 }
-            }.task {
-                do {
-                    stories = try await APIService.shared.fetchData(for: Stories.self, from: "https://hacker-news.firebaseio.com/v0/topstories.json")
-                    stories = Array(stories[0 ... 9])
-                } catch {
-                    print(error)
-                }
+            }
+            .refreshable {
+                stories = await getStories()
+            }
+            .task {
+                stories = await getStories()
             }
         }
+    }
+
+    func getStories() async -> Stories {
+        do {
+            let data = try await APIService.shared.fetchData(for: Stories.self, from: "https://hacker-news.firebaseio.com/v0/topstories.json")
+            return Array(data.prefix(10))
+        } catch {
+            print(error)
+        }
+        return []
     }
 
     func hapticFeedback() {
