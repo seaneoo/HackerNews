@@ -38,12 +38,16 @@ struct StoryItemView: View {
                 Text("\(by) • \(formatUnixTime(from: time) ?? "") ago").font(.subheadline)
             }
 
-            HStack(spacing: 20) {
-                toolBarActionUpvote
-                toolBarActionShowComments
-                toolBarActionSave
+            NavigationLink {
+                ItemDetailsView(item: item)
+            } label: {
+                HStack(spacing: 20) {
+                    toolBarActionUpvote
+                    toolBarActionShowComments
+                    toolBarActionSave
+                }
+                .padding([.top], 2)
             }
-            .padding([.top], 2)
         }
         .onTapGesture {
             // on tap, open the item's url in the default browser
