@@ -23,21 +23,26 @@ struct StoryItemView: View {
     @ViewBuilder
     private var contentView: some View {
         VStack(alignment: .leading, spacing: 10) {
-            Text("\(item.title ?? "undetermined")")
-                .font(.headline)
-
-//            if let url = item.url { }
-
-            if let by = item.by {
-                Button {
-                    // TODO: go to user profile view
-                } label: {
-                    Text("by \(by)").font(.subheadline)
-                        .foregroundColor(.primary)
-                }
+            if let url = item.url {
+                LinkPreviewView(url: URL(string: url))
             }
 
-            ItemActionBarView(item: item, size: .small)
+            VStack(alignment: .leading, spacing: 10) {
+                Text("\(item.title ?? "undetermined")")
+                    .font(.headline)
+
+                if let by = item.by {
+                    Button {
+                        // TODO: go to user profile view
+                    } label: {
+                        Text("by \(by)").font(.subheadline)
+                            .foregroundColor(.primary)
+                    }
+                }
+
+                ItemActionBarView(item: item, size: .small)
+            }
+            .padding()
         }
         .swipeActions(edge: .leading) {
             // upvote the item when swiping right

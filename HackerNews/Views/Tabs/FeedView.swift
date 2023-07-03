@@ -33,6 +33,7 @@ struct FeedView: View {
                 List {
                     ForEach(0 ..< stories.count, id: \.self) { index in
                         ItemView(id: stories[index])
+                            .listRowInsets(EdgeInsets())
                     }
                 }
                 .listStyle(.plain)
