@@ -21,7 +21,7 @@ func getRelativeTimeFromNow(from date: Date) -> String {
     relativeDateFormatter.unitsStyle = .short
     relativeDateFormatter.formattingContext = .standalone
     relativeDateFormatter.calendar = .autoupdatingCurrent
-    let value = String(relativeDateFormatter.localizedString(for: date, relativeTo: .now).dropLast(5))
+    let value = String(relativeDateFormatter.localizedString(for: date, relativeTo: .now))
     return value.hasPrefix("in") ? "now" : value
 }
 
