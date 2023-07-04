@@ -42,6 +42,31 @@ struct StoryItemView: View {
             ItemActionBarView(item: item, size: .small)
         }
         .padding()
+        .contextMenu(menuItems: {
+            Button {
+                // TODO: upvote the item
+            } label: {
+                Label("Upvote", systemImage: "arrow.up")
+            }
+
+            Button {
+                // TODO: go to the item details view
+            } label: {
+                Label("Comments", systemImage: "bubble.right")
+            }
+
+            Button {
+                // TODO: open share sheet
+            } label: {
+                Label("Share", systemImage: "square.and.arrow.up")
+            }
+
+            Button {
+                // TODO: bookmark the item
+            } label: {
+                Label("Bookmark", systemImage: "bookmark")
+            }
+        })
         .swipeActions(edge: .leading) {
             // upvote the item when swiping right
             Button {
