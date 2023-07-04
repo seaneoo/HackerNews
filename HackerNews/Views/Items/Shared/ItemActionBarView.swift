@@ -8,15 +8,17 @@
 import SwiftUI
 
 struct ItemActionBarView: View {
+    @ObservedObject private var vm: ItemViewModel
+    private var fontSize: Font
+
     var item: Item
     var size: ActionBarSize
-
-    private var fontSize: Font
 
     init(item: Item, size: ActionBarSize) {
         self.item = item
         self.size = size
 
+        vm = ItemViewModel(item: self.item)
         fontSize = self.size == .large ? .body : .footnote
     }
 
@@ -37,7 +39,9 @@ struct ItemActionBarView: View {
 
     private var actionBarScore: some View {
         Button {
-            // TODO: upvote the item
+            if !vm.upvote() {
+                print("did not upvote")
+            }
         } label: {
             HStack {
                 Image(systemName: "arrow.up")
@@ -83,9 +87,11 @@ struct ItemActionBarView: View {
             }
 
             Button {
-                // TODO: bookmark the item
+                if !vm.save() {
+                    print("did not save")
+                }
             } label: {
-                Label("Bookmark", systemImage: "bookmark")
+                Label("Save", systemImage: "bookmark")
             }
         } label: {
             Image(systemName: "ellipsis")

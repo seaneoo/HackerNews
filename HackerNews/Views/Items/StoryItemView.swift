@@ -8,12 +8,14 @@
 import SwiftUI
 
 struct StoryItemView: View {
-    var item: Item
-
+    @ObservedObject private var vm: ItemViewModel
     @Environment(\.openURL) private var openURL
+
+    var item: Item
 
     init(item: Item) {
         self.item = item
+        vm = ItemViewModel(item: self.item)
     }
 
     var body: some View {
@@ -44,7 +46,9 @@ struct StoryItemView: View {
         .padding()
         .contextMenu(menuItems: {
             Button {
-                // TODO: upvote the item
+                if !vm.upvote() {
+                    print("did not upvote")
+                }
             } label: {
                 Label("Upvote", systemImage: "arrow.up")
             }
@@ -62,24 +66,28 @@ struct StoryItemView: View {
             }
 
             Button {
-                // TODO: bookmark the item
+                if !vm.save() {
+                    print("did not save")
+                }
             } label: {
-                Label("Bookmark", systemImage: "bookmark")
+                Label("Save", systemImage: "bookmark")
             }
         })
         .swipeActions(edge: .leading) {
-            // upvote the item when swiping right
             Button {
-                print("upvote")
+                if !vm.upvote() {
+                    print("did not upvote")
+                }
             } label: {
                 Label("Upvote", systemImage: "arrow.up")
             }
             .tint(.orange)
         }
         .swipeActions(edge: .trailing) {
-            // save the item when swiping left
             Button {
-                print("save")
+                if !vm.save() {
+                    print("did not save")
+                }
             } label: {
                 Label("Save", systemImage: "bookmark")
             }

@@ -8,13 +8,15 @@
 import SwiftUI
 
 struct ItemView: View {
-    var id: Int
-
+    @ObservedObject private var vm: ItemViewModel
     @State private var item: Item?
-    @State private var itemType: String = ""
+    @State private var itemType: String?
+
+    var id: Int
 
     init(id: Int) {
         self.id = id
+        vm = ItemViewModel(id: self.id)
     }
 
     @MainActor
@@ -36,21 +38,13 @@ struct ItemView: View {
 
     @MainActor
     private var progressView: some View {
-        ProgressView {
-            Text("Loading")
-        }.task {
-            do {
-                item = try await getItem()
-                itemType = item?.type ?? "UNIDENTIFIED_TYPE"
-            } catch {
-                print(error) // change this to be proper logging later
+        ProgressView()
+            .task {
+                item = await vm.loadItem()
+                if let type = item?.type {
+                    itemType = type
+                }
             }
-        }
-    }
-
-    func getItem() async throws -> Item {
-        let url = "https://hacker-news.firebaseio.com/v0/item/\(String(id)).json"
-        return try await APIService.shared.fetchData(for: Item.self, from: url)
     }
 }
 
