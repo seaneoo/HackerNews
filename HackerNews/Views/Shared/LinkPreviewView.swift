@@ -13,7 +13,6 @@ struct LinkPreviewView: View {
 
     @State private var metadata: LPLinkMetadata?
     @State private var icon: UIImage?
-    @State private var image: UIImage?
 
     init(url: URL? = nil) {
         self.url = url
@@ -28,29 +27,21 @@ struct LinkPreviewView: View {
 
     @ViewBuilder
     private var contentView: some View {
-        VStack {
-            if let image {
-                Image(uiImage: image)
+        HStack {
+            if let icon {
+                Image(uiImage: icon)
                     .resizable()
                     .aspectRatio(contentMode: .fit)
+                    .frame(width: 15, height: 15)
+                    .clipShape(Circle())
+            } else {
+                Image(systemName: "globe")
+                    .frame(width: 15, height: 15)
             }
 
-//            VStack {
-//                if let title = metadata?.title {
-//                    Text(title)
-//                        .fontWeight(.bold)
-//                        .font(.footnote)
-//                        .frame(maxWidth: .infinity, alignment: .leading)
-//                        .lineLimit(1)
-//                }
-//
-//                if let absoluteString = url?.absoluteString {
-//                    Text(absoluteString)
-//                        .font(.footnote)
-//                        .frame(maxWidth: .infinity, alignment: .leading)
-//                        .lineLimit(1)
-//                }
-//            }
+            if let host = url?.host() {
+                Text(host).font(.footnote)
+            }
         }
         .frame(maxWidth: .infinity, alignment: .leading)
         .task {
@@ -61,14 +52,6 @@ struct LinkPreviewView: View {
                 metadata?.iconProvider?.loadDataRepresentation(for: .image, completionHandler: { data, error in
                     if let data {
                         icon = UIImage(data: data)
-                    } else if let error {
-                        print(error)
-                    }
-                })
-
-                metadata?.imageProvider?.loadDataRepresentation(for: .image, completionHandler: { data, error in
-                    if let data {
-                        image = UIImage(data: data)
                     } else if let error {
                         print(error)
                     }
