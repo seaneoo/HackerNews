@@ -11,11 +11,18 @@ import SwiftUI
 struct LinkPreviewView: View {
     var url: URL?
 
-    @State private var metadata: LPLinkMetadata?
-    @State private var icon: UIImage?
-
     init(url: URL? = nil) {
         self.url = url
+    }
+
+    var faviconUrl: URL? {
+        guard
+            let host = url?.host(),
+            let image = URL(string: "https://www.google.com/s2/favicons?sz=64&domain=\(host)")
+        else {
+            return nil
+        }
+        return image
     }
 
     @ViewBuilder
@@ -28,16 +35,15 @@ struct LinkPreviewView: View {
     @ViewBuilder
     private var contentView: some View {
         HStack {
-            if let icon {
-                Image(uiImage: icon)
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-                    .frame(width: 15, height: 15)
-                    .clipShape(Circle())
-            } else {
-                Image(systemName: "globe")
-                    .frame(width: 15, height: 15)
-                    .clipShape(Circle())
+            if let faviconUrl {
+                AsyncImage(url: faviconUrl) { image in
+                    image.resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(width: 15, height: 15)
+                } placeholder: {
+                    Image(systemName: "globe")
+                        .frame(width: 20, height: 20)
+                }
             }
 
             if let host = url?.host() {
@@ -45,24 +51,6 @@ struct LinkPreviewView: View {
             }
         }
         .frame(maxWidth: .infinity, alignment: .leading)
-        .task {
-            do {
-                let metadataProvider = LPMetadataProvider()
-                metadata = try await metadataProvider.startFetchingMetadata(for: url!)
-
-                if let iconProvider = metadata?.iconProvider {
-                    let _ = iconProvider.loadDataRepresentation(for: .image, completionHandler: { data, error in
-                        if let data {
-                            icon = UIImage(data: data)
-                        } else if let error {
-                            print(error)
-                        }
-                    })
-                }
-            } catch {
-                print("Error fetching metadata \(error)")
-            }
-        }
     }
 }
 
