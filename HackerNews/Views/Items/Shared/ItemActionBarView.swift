@@ -19,7 +19,7 @@ struct ItemActionBarView: View {
         self.size = size
 
         vm = ItemViewModel(item: self.item)
-        fontSize = self.size == .large ? .body : .footnote
+        fontSize = self.size == .large ? Constants.CFont.Body : Constants.CFont.Small
     }
 
     var body: some View {

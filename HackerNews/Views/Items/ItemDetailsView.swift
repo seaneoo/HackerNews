@@ -21,12 +21,11 @@ struct ItemDetailsView: View {
     @ViewBuilder
     private var contentView: some View {
         VStack(alignment: .leading) {
-            Text(String(item.title ?? "")).font(.title2)
-
+            if let title = item.title {
+                Text(title).font(Constants.CFont.Headline)
+            }
             Divider()
-
             ItemActionBarView(item: item, size: .large)
-
             Spacer()
         }
     }

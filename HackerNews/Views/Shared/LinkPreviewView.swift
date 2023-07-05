@@ -37,10 +37,11 @@ struct LinkPreviewView: View {
             } else {
                 Image(systemName: "globe")
                     .frame(width: 15, height: 15)
+                    .clipShape(Circle())
             }
 
             if let host = url?.host() {
-                Text(host).font(.footnote)
+                Text(host).font(Constants.CFont.XSmall)
             }
         }
         .frame(maxWidth: .infinity, alignment: .leading)
@@ -49,13 +50,15 @@ struct LinkPreviewView: View {
                 let metadataProvider = LPMetadataProvider()
                 metadata = try await metadataProvider.startFetchingMetadata(for: url!)
 
-                metadata?.iconProvider?.loadDataRepresentation(for: .image, completionHandler: { data, error in
-                    if let data {
-                        icon = UIImage(data: data)
-                    } else if let error {
-                        print(error)
-                    }
-                })
+                if let iconProvider = metadata?.iconProvider {
+                    let _ = iconProvider.loadDataRepresentation(for: .image, completionHandler: { data, error in
+                        if let data {
+                            icon = UIImage(data: data)
+                        } else if let error {
+                            print(error)
+                        }
+                    })
+                }
             } catch {
                 print("Error fetching metadata \(error)")
             }

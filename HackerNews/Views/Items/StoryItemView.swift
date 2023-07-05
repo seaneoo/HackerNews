@@ -30,13 +30,13 @@ struct StoryItemView: View {
             }
 
             Text("\(item.title ?? "undetermined")")
-                .font(.headline)
+                .font(Constants.CFont.Headline)
 
             if let by = item.by {
                 Button {
                     // TODO: go to user profile view
                 } label: {
-                    Text("by \(by)").font(.subheadline)
+                    Text("by \(by)").font(Constants.CFont.Small)
                         .foregroundColor(.primary)
                 }
             }
