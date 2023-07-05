@@ -22,7 +22,7 @@ struct ItemDetailsView: View {
     private var contentView: some View {
         VStack(alignment: .leading) {
             if let title = item.title {
-                Text(title).font(Constants.CFont.Headline)
+                Text(title).font(AppConstants.CFont.Headline)
             }
             Divider()
             ItemActionBarView(item: item, size: .large)

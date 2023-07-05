@@ -8,7 +8,15 @@
 import Foundation
 import SwiftUI
 
-struct Constants {
+struct AppConstants {
+    static let urlSession: URLSession = URLSession(configuration: .default)
+    static let jsonDecoder: JSONDecoder = JSONDecoder()
+
+    static let dateFormatter: DateFormatter = DateFormatter()
+    static let relativeDateFormatter: RelativeDateTimeFormatter = RelativeDateTimeFormatter()
+
+    static let feedbackGenerator: UIImpactFeedbackGenerator = UIImpactFeedbackGenerator(style: .medium)
+
     struct CFont {
         static let Body = Font.body
         static let Headline = Font.headline

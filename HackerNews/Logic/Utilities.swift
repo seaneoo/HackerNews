@@ -8,20 +8,16 @@
 import Foundation
 import SwiftUI
 
-let dateFormatter: DateFormatter = DateFormatter()
-
-let relativeDateFormatter: RelativeDateTimeFormatter = RelativeDateTimeFormatter()
-
 func convertUnixTime(from timestamp: Int) -> Date {
     return Date(timeIntervalSince1970: TimeInterval(timestamp))
 }
 
 func getRelativeTimeFromNow(from date: Date) -> String {
-    relativeDateFormatter.dateTimeStyle = .numeric
-    relativeDateFormatter.unitsStyle = .short
-    relativeDateFormatter.formattingContext = .standalone
-    relativeDateFormatter.calendar = .autoupdatingCurrent
-    let value = String(relativeDateFormatter.localizedString(for: date, relativeTo: .now))
+    AppConstants.relativeDateFormatter.dateTimeStyle = .numeric
+    AppConstants.relativeDateFormatter.unitsStyle = .short
+    AppConstants.relativeDateFormatter.formattingContext = .standalone
+    AppConstants.relativeDateFormatter.calendar = .autoupdatingCurrent
+    let value = String(AppConstants.relativeDateFormatter.localizedString(for: date, relativeTo: .now))
     return value.hasPrefix("in") ? "now" : value
 }
 
@@ -33,9 +29,4 @@ func abbrNumber(from number: Int) -> String {
         return String(format: "%.1fK", num / 1000)
     }
     return String(number)
-}
-
-func hapticFeedback() {
-    let impact = UIImpactFeedbackGenerator(style: .medium)
-    impact.impactOccurred()
 }

@@ -47,7 +47,7 @@ struct LinkPreviewView: View {
             }
 
             if let host = url?.host() {
-                Text(host).font(Constants.CFont.XSmall)
+                Text(host).font(AppConstants.CFont.XSmall)
             }
         }
         .frame(maxWidth: .infinity, alignment: .leading)

@@ -44,21 +44,21 @@ struct FeedView: View {
                     Menu {
                         Button {
                             storyType = StoryType.top
-                            hapticFeedback()
+                            AppConstants.feedbackGenerator.impactOccurred()
                         } label: {
                             Label("Top", systemImage: StoryType.top.image())
                         }
 
                         Button {
                             storyType = StoryType.best
-                            hapticFeedback()
+                            AppConstants.feedbackGenerator.impactOccurred()
                         } label: {
                             Label("Best", systemImage: StoryType.best.image())
                         }
 
                         Button {
                             storyType = StoryType.new
-                            hapticFeedback()
+                            AppConstants.feedbackGenerator.impactOccurred()
                         } label: {
                             Label("New", systemImage: StoryType.new.image())
                         }
