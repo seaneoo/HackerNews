@@ -1,7 +1,7 @@
 # Hacker News
 
-<p float="left">
-  <img width="25%" src="https://github.com/seaneoo/HackerNews/blob/main/docs/Simulator%20Screenshot%20-%20iPhone%2014%20Pro%20Max%20-%202023-07-04%20at%2016.09.31.png?raw=true" />
-  
-  <img width="25%" src="https://github.com/seaneoo/HackerNews/blob/main/docs/Simulator%20Screenshot%20-%20iPhone%2014%20Pro%20Max%20-%202023-07-04%20at%2016.09.37.png?raw=true" />
-</p>
+*Hacker News* (new name pending) is a free and open source iOS app to browse [Hacker News](https://news.ycombinator.com).
+
+## License
+
+Distributed under the GPL-3.0-or-later license. Full text can be found at https://www.gnu.org/licenses/gpl-3.0.txt or [LICENSE](LICENSE).
