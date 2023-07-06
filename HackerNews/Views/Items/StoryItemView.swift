@@ -10,6 +10,7 @@ import SwiftUI
 struct StoryItemView: View {
     @ObservedObject private var vm: ItemViewModel
     @Environment(\.openURL) private var openURL
+    @EnvironmentObject var appState: AppState
 
     var item: Item
 
@@ -35,6 +36,8 @@ struct StoryItemView: View {
             if let by = item.by {
                 Button {
                     // TODO: go to user profile view
+                    appState.toastMessage = "Test"
+                    appState.isShowingToast.toggle()
                 } label: {
                     Text("by \(by)").font(AppConstants.CFont.Small)
                         .foregroundColor(.primary)

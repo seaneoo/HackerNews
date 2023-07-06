@@ -11,4 +11,7 @@ class AppState: ObservableObject {
     @Published var isShowingAlert: Bool = false
     @Published var alertTitle: String = ""
     @Published var alertMessage: String = ""
+
+    @Published var isShowingToast: Bool = false
+    @Published var toastMessage: String = ""
 }

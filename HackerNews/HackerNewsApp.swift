@@ -5,6 +5,7 @@
 //  Created by Sean O'Connor on 7/2/23.
 //
 
+import AlertToast
 import SwiftUI
 
 @main
@@ -23,6 +24,9 @@ struct HackerNewsApp: App {
                     }
                 } message: {
                     Text(appState.alertMessage)
+                }
+                .toast(isPresenting: $appState.isShowingToast) {
+                    AlertToast(displayMode: .hud, type: .regular, title: appState.toastMessage)
                 }
         }
     }
