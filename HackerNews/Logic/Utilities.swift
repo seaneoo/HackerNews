@@ -12,6 +12,12 @@ func convertUnixTime(from timestamp: Int) -> Date {
     return Date(timeIntervalSince1970: TimeInterval(timestamp))
 }
 
+func formatDate(from date: Date) -> String {
+    AppConstants.dateFormatter.dateStyle = .long
+    AppConstants.dateFormatter.timeStyle = .long
+    return AppConstants.dateFormatter.string(from: date)
+}
+
 func getRelativeTimeFromNow(from date: Date) -> String {
     AppConstants.relativeDateFormatter.dateTimeStyle = .numeric
     AppConstants.relativeDateFormatter.unitsStyle = .short

@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct ItemActionBarView: View {
+    @EnvironmentObject var appState: AppState
+
     @ObservedObject private var vm: ItemViewModel
     private var fontSize: Font
 
@@ -67,7 +69,8 @@ struct ItemActionBarView: View {
 
     private var actionBarTime: some View {
         Button {
-            // TODO: display full time via toast
+            appState.toastMessage = String(formatDate(from: convertUnixTime(from: item.time ?? 0)))
+            appState.isShowingToast.toggle()
         } label: {
             HStack {
                 Image(systemName: "clock")
