@@ -28,6 +28,9 @@ struct HackerNewsApp: App {
                 .toast(isPresenting: $appState.isShowingToast) {
                     AlertToast(displayMode: .hud, type: .regular, title: appState.toastMessage)
                 }
+                .toast(isPresenting: $appState.isShowingError) {
+                    AlertToast(displayMode: .alert, type: .error(.red), title: appState.errorMessage)
+                }
         }
     }
 }

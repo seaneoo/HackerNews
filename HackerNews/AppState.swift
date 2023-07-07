@@ -14,4 +14,7 @@ class AppState: ObservableObject {
 
     @Published var isShowingToast: Bool = false
     @Published var toastMessage: String = ""
+
+    @Published var isShowingError: Bool = false
+    @Published var errorMessage: String = ""
 }
