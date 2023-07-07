@@ -7,89 +7,17 @@
 
 import Foundation
 
-// List of unique ids representing items
-typealias Stories = [Int]
+// List of IDs where each ID represents an item
+typealias Items = [Int]
 
-// https://github.com/HackerNews/API#items
-struct Item: Codable {
-    var id: Int // the item's unique id
-    var deleted: Bool? // true, if the item is deleted
-    var type: String? // the type of the item (job, story, comment, poll, or pollopt)
-    var by: String? // the username of the item's author
-    var time: Int? // the creation date and time of the item, in Unix time
-    var text: String? // the comment, story, or poll text (HTML)
-    var dead: Bool? // true, if the item is dead
-    var parent: Int? // the comment's parent (an item id)
-    var poll: Int? // the pollopt's associated poll
-    var kids: [Int]? // the ids of the item's comments
-    var url: String? // the url of the story
-    var score: Int? // the story's score
-    var title: String? // the title of the story, poll, or job (HTML)
-    var parts: [Int]? // a list of related pollopts
-    var descendants: Int? // the total comment count
+struct ModelPreviews {
+    static let StoryUrl = Item(id: 36575003, type: "story", by: "pseudolus", time: 1688400663, kids: [36575485, 36575492, 36575655, 36575512, 36575477, 36575738, 36575594, 36575478, 36575613, 36575688, 36575629, 36575484, 36575703, 36575668, 36575483, 36575660], url: "https://www.washingtonpost.com/technology/2023/07/01/amazon-goodreads-elizabeth-gilbert/", score: 61, title: "Goodreads was the future of book reviews. Then Amazon bought it", descendants: 26)
 
-    init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        id = try container.decode(Int.self, forKey: .id)
-        deleted = try container.decodeIfPresent(Bool.self, forKey: .deleted)
-        type = try container.decodeIfPresent(String.self, forKey: .type)
-        by = try container.decodeIfPresent(String.self, forKey: .by)
-        time = try container.decodeIfPresent(Int.self, forKey: .time)
-        text = try container.decodeIfPresent(String.self, forKey: .text)
-        dead = try container.decodeIfPresent(Bool.self, forKey: .dead)
-        parent = try container.decodeIfPresent(Int.self, forKey: .parent)
-        poll = try container.decodeIfPresent(Int.self, forKey: .poll)
-        kids = try container.decodeIfPresent([Int].self, forKey: .kids)
-        url = try container.decodeIfPresent(String.self, forKey: .url)
-        score = try container.decodeIfPresent(Int.self, forKey: .score)
-        title = try container.decodeIfPresent(String.self, forKey: .title)
-        parts = try container.decodeIfPresent([Int].self, forKey: .parts)
-        descendants = try container.decodeIfPresent(Int.self, forKey: .descendants)
-    }
+    static let StoryText = Item(id: 36609641, type: "story", by: "baron816", time: 1688606241, text: "Its acquirer (Bending Spoons) has taken over operations. They’ve also hiked subscriptions prices and told customers they intend to use new revenues to pay for new features. How they intend to do that without any staff is something I would like to know about.<p>If you’re still using Evernote, probably a good time to stop.", kids: [36610798, 36610242, 36616050, 36612514, 36611211, 36610305, 36610213, 36610795, 36621303, 36613488, 36613249, 36633801, 36610584, 36616007, 36614236, 36610156, 36610788, 36618085, 36615748, 36611231, 36611950, 36610612, 36616760, 36611647, 36613417, 36610513, 36610259, 36617875, 36615116, 36636311, 36629200, 36632040, 36611497, 36615865], title: "Tell HN: Nearly all of Evernote’s remaining staff has been laid off", descendants: 586)
 
-    init(id: Int, deleted: Bool? = nil, type: String? = nil, by: String? = nil, time: Int? = nil, text: String? = nil, dead: Bool? = nil, parent: Int? = nil, poll: Int? = nil, kids: [Int]? = nil, url: String? = nil, score: Int? = nil, title: String? = nil, parts: [Int]? = nil, descendants: Int? = nil) {
-        self.id = id
-        self.deleted = deleted
-        self.type = type
-        self.by = by
-        self.time = time
-        self.text = text
-        self.dead = dead
-        self.parent = parent
-        self.poll = poll
-        self.kids = kids
-        self.url = url
-        self.score = score
-        self.title = title
-        self.parts = parts
-        self.descendants = descendants
-    }
+    static let StoryUrlText = Item(id: 36613727, type: "story", by: "surprisetalk", time: 1688638516, text: "Like others on here, I was inspired by the &quot;personal blogs&quot; post :)<p>[0] <a href=\"https:&#x2F;&#x2F;news.ycombinator.com&#x2F;item?id=36575081\">https:&#x2F;&#x2F;news.ycombinator.com&#x2F;item?id=36575081</a><p>In proper HN fashion, the site is open-source and requires no JS!<p>There&#x27;s instructions on how to add&#x2F;edit a blog on the Github README.<p>[1] <a href=\"https:&#x2F;&#x2F;github.com&#x2F;surprisetalk&#x2F;blogs.hn\">https:&#x2F;&#x2F;github.com&#x2F;surprisetalk&#x2F;blogs.hn</a><p>Note that your blog might appear in blogs.json, but not on the site! Right now I&#x27;m using the following code to filter out blogs. Your blog might appear if you add more metadata:<p><pre><code>  if (\n    3 &gt; 0  \n      + !!blog.title  \n      + (blog.desc.length &gt; 40)  \n      + !!blog.about  \n      + !!blog.now  \n      + !!blog.feed  \n      + 3 * (blog.hn.length &gt; 1)      \n  )\n    continue;\n</code></pre>\nAs I mention on the &#x2F;about page, if you don&#x27;t already have a blog, I recently made a minimal static site generator! It&#x27;s easier than ever to begin your writing journey :)<p>[2] <a href=\"https:&#x2F;&#x2F;github.com&#x2F;surprisetalk&#x2F;worstpress\">https:&#x2F;&#x2F;github.com&#x2F;surprisetalk&#x2F;worstpress</a>", kids: [36635335, 36637002, 36634592, 36635258, 36636765, 36625586, 36637292, 36636048, 36638128, 36636484, 36636963, 36635584], url: "https://blogs.hn", score: 141, title: "Show HN: Blogs.hn – tiny blog directory", descendants: 48)
+
+    static let Comment = Item(id: 36610798, type: "comment", by: "belthesar", time: 1688614367, text: "I feel like Evernote is a prime example of the pains of trying to convert free users to paying users for the same features, something we see in many VC funded software from its era. Once you give something away, it&#x27;s damn near impossible to take it back, even if you plead your case as honestly as Evernote did.<p>Evernote was great. Honestly, it was worth paying for. But they gave away the farm too early, and folks feeling like what they had was being taken away from them spurned a lack of trust. Obsidian made the smartest play by giving you the editor, keeping the files outside of a database so that they&#x27;re portable (so they feel safe if they ever have to move away), and telling you that if you want to own the sync story that you can, but you can pay to have the cohesive experience on every device.", parent: 36609641, kids: [36614181, 36612020, 36611055, 36614960, 36614201, 36612068, 36611000, 36617348, 36610917, 36611862, 36627056, 36625640, 36625877, 36612822, 36614478, 36612021, 36612180, 36611014, 36613201, 36610832])
+
+    static let Job = Item(id: 36638237, type: "job", by: "ankitdce", time: 1688763648, url: "https://www.ycombinator.com/companies/aviator/jobs", score: 1, title: "Aviator (YC S21) is hiring engineers to build the future of monorepos")
 }
-
-// https://github.com/HackerNews/API#users
-struct User: Codable {
-    var id: String // the user's unique username
-    var created: Int // the creation date and time of the user, in Unix time
-    var karma: Int // the user's karma
-    var about: String? // the user's optional description (HTML)
-    var submitted: [Int]? // the user's stories, polls, and comments
-
-    init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        id = try container.decode(String.self, forKey: .id)
-        created = try container.decode(Int.self, forKey: .created)
-        karma = try container.decode(Int.self, forKey: .karma)
-        about = try container.decodeIfPresent(String.self, forKey: .about)
-        submitted = try container.decodeIfPresent([Int].self, forKey: .submitted)
-    }
-
-    init(id: String, created: Int, karma: Int, about: String? = nil, submitted: [Int]? = nil) {
-        self.id = id
-        self.created = created
-        self.karma = karma
-        self.about = about
-        self.submitted = submitted
-    }
-}
-
-let ItemStoryPreview = Item(id: 36575003, type: "story", by: "pseudolus", time: 1688400663, kids: [36575485, 36575492, 36575655, 36575512, 36575477, 36575738, 36575594, 36575478, 36575613, 36575688, 36575629, 36575484, 36575703, 36575668, 36575483, 36575660], url: "https://www.washingtonpost.com/technology/2023/07/01/amazon-goodreads-elizabeth-gilbert/", score: 61, title: "Goodreads was the future of book reviews. Then Amazon bought it", descendants: 26)
